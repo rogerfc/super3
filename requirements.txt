@@ -1,0 +1,5 @@
+beautifulsoup4
+sqlalchemy
+psycopg2
+requests
+lxml
