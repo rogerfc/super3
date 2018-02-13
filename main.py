@@ -3,9 +3,9 @@
 
 from super3.model import Serie, Episodi, Base
 from super3.scrapper import get_series, get_serie_videos, get_video_download_url
+from super3.download import download_mp4
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import urllib
 
 
 def main():
@@ -16,7 +16,7 @@ def main():
     Base.metadata.create_all(engine)
 
     s = session()
-    for serie, url in get_series('Kratt'):
+    for serie, url in get_series('Quack'):
         sr = Serie(nom=serie, url=url)
         for episodi, url in get_serie_videos(sr.url):
             mp4 = get_video_download_url(url)
@@ -28,13 +28,11 @@ def main():
         print('Sèrie: {}'.format(serie))
         for episodi in serie.episodis:
             print('  - Ep: {}'.format(episodi))
-            print('    {}'.format(episodi.url))
-            print('    {}'.format(episodi.mp4))
             filename = '{}-{}.mp4'.format(
                 serie.nom.lower().replace(' ', '-'),
                 episodi.nom.lower().replace(' ', '-'))
-            urllib.request.urlretrieve(episodi.mp4, filename)
-            print('    Descarregat')
+            download_mp4(episodi.mp4, filename)
+
 
 if __name__ == '__main__':
     main()
