@@ -28,12 +28,10 @@ def get_serie_videos(url, filter=None):
     content = result.content
     soup = BeautifulSoup(content, 'lxml')
 
-    videos = {}
     for video in [s for s in soup.find_all('article', 'T-video')]:
         title = video.find('a', 'media-object').find('h2').string.strip()
-        videos[title] = urljoin(
-            site, video.find('a', 'media-object').attrs['href'])
-    return videos
+        if not filter or filter.lower() in title.lower():
+            yield title, urljoin(site, video.a.attrs['href'])
 
 
 def get_video_download_url(url):
