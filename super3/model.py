@@ -12,6 +12,9 @@ class Serie(Base):
     url = Column(Unicode)
     episodis = relationship('Episodi', backref='serie')
 
+    def __str__(self):
+        return self.nom
+
     def __repr__(self):
         return u'<Serie(id={}, name={})>'.format(self.id, self.nom)
 
@@ -24,7 +27,9 @@ class Episodi(Base):
     nom = Column(Unicode, unique=True)
     url = Column(Unicode)
     mp4 = Column(Unicode)
-    # serie = relationship('Serie')
+
+    def __str__(self):
+        return self.nom
 
     def __repr__(self):
         return u'<Episodi(id={}, nom={})>'.format(self.id, self.nom)
