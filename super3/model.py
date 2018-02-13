@@ -8,12 +8,12 @@ class Serie(Base):
     __tablename__ = 'serie'
 
     id = Column(Integer, primary_key=True)
-    name = Column(Unicode, unique=True)
+    nom = Column(Unicode, unique=True)
     url = Column(Unicode)
     episodis = relationship('Episodi', backref='serie')
 
     def __repr__(self):
-        return u'<Serie(id={}, name={})>'.format(self.id, self.name)
+        return u'<Serie(id={}, name={})>'.format(self.id, self.nom)
 
 
 class Episodi(Base):
@@ -21,10 +21,10 @@ class Episodi(Base):
 
     id = Column(Integer, primary_key=True)
     serie_id = Column(Integer, ForeignKey('serie.id'))
-    name = Column(Unicode, unique=True)
+    nom = Column(Unicode, unique=True)
     url = Column(Unicode)
     mp4 = Column(Unicode)
     # serie = relationship('Serie')
 
     def __repr__(self):
-        return u'<Episodi(id={}, name={})>'.format(self.id, self.name)
+        return u'<Episodi(id={}, nom={})>'.format(self.id, self.nom)
