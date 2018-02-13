@@ -31,6 +31,37 @@ Install the dependencies
 
 This runs locally ATM.
 
+
+## Usage
+
+Foreseen invocation:
+
+create new catalog
+```
+$ super3 init
+```
+
+add series to catalog with title containing 'Kratt'
+```
+$ super3 add-series -name 'Kratt'
+```
+
+update available episodes
+```
+$ super3 update
+```
+
+list available episodes
+```
+$ super3 list -name 'Kratt'
+```
+
+download available
+```
+$ super3 download -name 'Kratt'
+```
+
+
 ## Built With
 
 * [Requests](http://docs.python-requests.org) - Used to make http calls
