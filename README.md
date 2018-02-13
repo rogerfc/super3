@@ -78,9 +78,9 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Roger Firpo** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Roger Firpo** - *Initial work* - [rogerfc](https://github.com/rogerfc)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/rogerfc/super3/contributors) who participated in this project.
 
 ## License
 
