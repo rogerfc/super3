@@ -15,14 +15,12 @@ def get_series(filter=None):
     content = result.content
     soup = BeautifulSoup(content, 'lxml')
 
-    series = {}
     for serie in [
             s.find('p', 'titol').find('a')
             for s in soup.find_all("div", "F-llistaItem")]:
         title = serie.string.strip()
         if not filter or filter.lower() in title.lower():
-            series[title] = urljoin(site, serie.attrs['href'])
-        yield title, urljoin(site, serie.attrs['href'])
+            yield title, urljoin(site, serie.attrs['href'])
 
 
 def get_serie_videos(url, filter=None):
