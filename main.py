@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from super3.model import Serie, Episodi, Base
-from super3.scrapper import get_series, get_serie_videos, get_video_download_url
+from super3.scrapper import get_series, get_serie_episodes, get_episode_mp4
 from super3.download import download_mp4
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -18,8 +18,8 @@ def main():
     s = session()
     for serie, url in get_series('Quack'):
         sr = Serie(nom=serie, url=url)
-        for episodi, url in get_serie_videos(sr.url):
-            mp4 = get_video_download_url(url)
+        for episodi, url in get_serie_episodes(sr.url):
+            mp4 = get_episode_mp4(url)
             ep = Episodi(serie=sr, nom=episodi, url=url, mp4=mp4)
         s.add(sr)
     s.commit()

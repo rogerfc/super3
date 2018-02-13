@@ -23,7 +23,7 @@ def get_series(filter=None):
             yield title, urljoin(site, serie.attrs['href'])
 
 
-def get_serie_videos(url, filter=None):
+def get_serie_episodes(url, filter=None):
     result = requests.get(urljoin(site, url))
     content = result.content
     soup = BeautifulSoup(content, 'lxml')
@@ -34,7 +34,7 @@ def get_serie_videos(url, filter=None):
             yield title, urljoin(site, video.a.attrs['href'])
 
 
-def get_video_download_url(url):
+def get_episode_mp4(url):
     video_id = os.path.basename(os.path.normpath(url))
     download_url = (
         'http://www.tv3.cat/pvideo/'
