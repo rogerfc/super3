@@ -17,7 +17,7 @@ setup(
     packages=['super3'],  # same as name
     entry_points={
         'console_scripts': [
-            'super3=main:main'
+            'super3 = super3.main:main'
         ],
     },
 )
