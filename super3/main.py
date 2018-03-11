@@ -6,9 +6,10 @@ from super3.scrapper import get_series, get_serie_episodes, get_episode_mp4
 from super3.download import download_mp4
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import argparse
 
 
-def main():
+def main(filtre='Kratt'):
     engine = create_engine('sqlite:///:memory:', encoding='utf-8', echo=False)
 
     session = sessionmaker()
@@ -16,7 +17,7 @@ def main():
     Base.metadata.create_all(engine)
 
     s = session()
-    for serie, url in get_series('Quack'):
+    for serie, url in get_series(filtre):
         sr = Serie(nom=serie, url=url)
         for episodi, url in get_serie_episodes(sr.url):
             mp4 = get_episode_mp4(url)
@@ -35,4 +36,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', dest='filtre', action="store", default=None)
+    args = parser.parse_args()
+    main(args.filtre)

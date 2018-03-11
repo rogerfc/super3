@@ -10,7 +10,7 @@ import os.path
 site = 'http://www.ccma.cat'
 main_url = '/tv3/super3/series-i-programes'
 
-def get_series(filter=None):
+def get_series(filtre=None):
     result = requests.get(urljoin(site, main_url))
     content = result.content
     soup = BeautifulSoup(content, 'lxml')
@@ -19,18 +19,18 @@ def get_series(filter=None):
             s.find('a').attrs
             for s in soup.find_all("div", "F-itemContenidorIntern")]:
         title = serie['title']
-        if not filter or filter.lower() in title.lower():
+        if not filtre or filtre.lower() in title.lower():
             yield title, urljoin(site, serie['href'])
 
 
-def get_serie_episodes(url, filter=None):
+def get_serie_episodes(url, filtre=None):
     result = requests.get(urljoin(site, url))
     content = result.content
     soup = BeautifulSoup(content, 'lxml')
 
     for video in [s for s in soup.find_all('article', 'T-video')]:
         title = video.find('a', 'media-object').find('h2').string.strip()
-        if not filter or filter.lower() in title.lower():
+        if not filtre or filtre.lower() in title.lower():
             yield title, urljoin(site, video.a.attrs['href'])
 
 
