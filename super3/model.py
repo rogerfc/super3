@@ -25,11 +25,13 @@ class Episodi(Base):
     id = Column(Integer, primary_key=True)
     serie_id = Column(Integer, ForeignKey('serie.id'))
     nom = Column(Unicode, unique=True)
+    num = Column(Integer, unique=True)
     url = Column(Unicode)
+    img = Column(Unicode)
     mp4 = Column(Unicode)
 
     def __str__(self):
         return self.nom
 
     def __repr__(self):
-        return u'<Episodi(id={}, nom={})>'.format(self.id, self.nom)
+        return u'<Episodi(num={}, nom={})>'.format(self.num, self.nom)

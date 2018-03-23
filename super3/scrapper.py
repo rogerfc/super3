@@ -24,7 +24,7 @@ def get_series(filtre=None):
 
 
 def get_serie_episodes(url, filtre=None):
-    result = requests.get(urljoin(site, url))
+    result = requests.get(urljoin(urljoin(site, url), 'videos'))
     content = result.content
     soup = BeautifulSoup(content, 'lxml')
 
@@ -34,7 +34,7 @@ def get_serie_episodes(url, filtre=None):
             yield title, urljoin(site, video.a.attrs['href'])
 
 
-def get_episode_mp4(url):
+def get_episode_metadata(url):
     video_id = os.path.basename(os.path.normpath(url))
     download_url = (
         'http://www.tv3.cat/pvideo/'
@@ -42,6 +42,11 @@ def get_episode_mp4(url):
 
     result = requests.get(urljoin(site, download_url))
     content = result.content
-    soup = BeautifulSoup(content, 'lxml')
+    soup = BeautifulSoup(content, 'xml')
 
-    return soup.find('videos').find('file').string
+    return {
+        'serie': soup.item.promo.string,
+        'capítol': {'num': soup.item.capitol.string, 'titol': soup.item.title.string},
+        'miniatura': soup.item.imgsrc.string,
+        'video': soup.item.videos.find('file').string
+    }
