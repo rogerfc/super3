@@ -1,5 +1,7 @@
 import progressbar
 import urllib.request
+from multiprocessing.dummy import Pool # use threads for I/O bound tasks
+from urllib.request import urlretrieve
 
 pbar = None
 
@@ -15,5 +17,15 @@ def show_progress(block_num, block_size, total_size):
         pbar.finish()
         pbar = None
 
-def download_mp4(url, filename):
+
+def down_file(url, filename):
     urllib.request.urlretrieve(url, filename, show_progress)
+
+
+def download_videos(urldata):
+
+    def fetch_url(urldata):
+        url, filename = urldata
+        urllib.request.urlretrieve(url, filename, show_progress)
+
+    result = Pool(4).map(fetch_url, urldata)
