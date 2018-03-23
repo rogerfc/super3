@@ -1,0 +1,47 @@
+<item>
+    <embed>false</embed>
+    <id>5029553</id>
+    <op>6007995</op>
+    <capitol>73</capitol>
+    <title>L'àliga pescadora</title>
+    <promo>Els germans Kratt</promo>
+    <categoria>49246</categoria>
+    <categoriaRanking>49246,48600</categoriaRanking>
+    <codi_etic_idName>CE_TP</codi_etic_idName>
+    <codi_etic_name>Tots els públics</codi_etic_name>
+    <durada_h>00:21:22</durada_h>
+    <durada_segs>1282</durada_segs>
+    <sitecensus>BB_GKRATT-TSERIES-</sitecensus>
+    <imgsrc>
+        http://www.tv3.cat/multimedia/jpg/7/6/1521076054667.jpg
+    </imgsrc>
+    <imatges>
+        <img size="151x85">
+            http://www.tv3.cat/multimedia/jpg/6/2/1521076053126.jpg
+        </img>
+        <img size="426x240">
+            http://www.tv3.cat/multimedia/jpg/7/6/1521076054667.jpg
+        </img>
+    </imatges>
+    <durada_h>00:21:22:01</durada_h>
+    <desc>
+        A en Jimmy li cauen les claus de la Nau Tortuga al mar. El Chris, el Martin i l'Aviva s'afanyen a crear poders d'àliga pescadora per trobar les claus abans que desapareguin per sempre.
+    </desc>
+    <data>// :</data>
+    <acces>CAP</acces>
+    <videos>
+        <video>
+            <format>MP4GES</format>
+            <qualitat ordre="5" label="Max">M</qualitat>
+            <acces>CAP</acces>
+        </video>
+        <video>
+            <format>MP4GES</format>
+            <qualitat ordre="10" label="Alta">H</qualitat>
+            <acces>CAP</acces>
+            <file quality="500">
+                http://mp4-medium-dwn-es.media.tv3.cat/g/tvcatalunya/1/3/1521076040931.mp4
+            </file>
+        </video>
+    </videos>
+</item>
