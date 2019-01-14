@@ -78,7 +78,9 @@ class Episodi(Base):
 
         return {
             'serie': soup.item.promo.string,
-            'capítol': {'num': soup.item.capitol.string, 'titol': soup.item.title.string},
+            'capítol': {
+                'num': soup.item.capitol.string,
+                'titol': soup.item.title.string},
             'miniatura': soup.item.imgsrc.string,
             'video': soup.item.videos.find('file').string
         }

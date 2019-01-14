@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from super3.model import Serie, Episodi, Base
-from super3.scrapper import get_series, get_serie_episodes
-# from super3.download import download_mp4, download_videos
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from .model import Serie, Episodi, Base
+from .scrapper import get_series, get_serie_episodes, get_episode_metadata
+from .download import down_file, download_videos
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
 import argparse
 import sys
 
@@ -66,6 +66,17 @@ def get_episodis_per_descarregar(session, filtre=None):
     # ]
     # # print(download_data)
     # download_videos(download_data)
+
+def download_from_url(url=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-u', dest='url', action="store", default=None)
+    args = parser.parse_args()
+
+    if args.url:
+        meta = get_episode_metadata(url=args.url)
+        filename = '{}.mp4'.format(meta['serie'].lower().replace(' ', '-'))
+        print('Descarregant video des de {}'.format(meta['video']))
+        down_file(meta['video'], filename)
 
 if __name__ == '__main__':
     main()
