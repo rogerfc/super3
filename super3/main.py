@@ -74,7 +74,10 @@ def download_from_url(url=None):
 
     if args.url:
         meta = get_episode_metadata(url=args.url)
-        filename = '{}.mp4'.format(meta['serie'].lower().replace(' ', '-'))
+        filename = '{} {} {}.mp4'.format(
+            meta['serie'],
+            meta['capítol']['num'],
+            meta['capítol']['titol']).lower().replace(':', '').replace(' ', '-')
         print('Descarregant video des de {}'.format(meta['video']))
         down_file(meta['video'], filename)
 
