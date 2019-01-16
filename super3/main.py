@@ -16,7 +16,8 @@ def main(filtre=None):
     args = parser.parse_args()
     if args.filtre:
 
-        engine = create_engine('sqlite:///:memory:', encoding='utf-8', echo=False)
+        engine = create_engine(
+            'sqlite:///:memory:', encoding='utf-8', echo=False)
         session = sessionmaker()
         session.configure(bind=engine)
         Base.metadata.create_all(engine)
@@ -77,9 +78,11 @@ def download_from_url(url=None):
         filename = '{} {} {}.mp4'.format(
             meta['serie'],
             meta['capítol']['num'],
-            meta['capítol']['titol']).lower().replace(':', '').replace(' ', '-')
+            meta['capítol']['titol']).replace(':', '').replace(' ', '-')\
+                .lower()
         print('Descarregant video des de {}'.format(meta['video']))
         down_file(meta['video'], filename)
+
 
 if __name__ == '__main__':
     main()
